@@ -1,3 +1,3 @@
-module github.com/samwestmoreland/soil_monitoring_pi
+module github.com/samwestmoreland/garden_sensor_hub
 
 go 1.24.3
