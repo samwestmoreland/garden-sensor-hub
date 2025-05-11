@@ -8,7 +8,7 @@ COPY go.mod ./
 
 RUN go mod download
 
-COPY src/*.go ./
+COPY src/ ./src/
 
 ARG VERSION=dev
 
