@@ -10,7 +10,9 @@ RUN go mod download
 
 COPY src/*.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /soil_monitoring_server
+ARG VERSION=dev
+
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-X main.Version=${VERSION}" -o /soil_monitoring_server ./src
 
 FROM gcr.io/distroless/base-debian11 AS build-release-stage
 
