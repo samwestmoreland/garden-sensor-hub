@@ -17,7 +17,7 @@ ARG TARGETPLATFORM
 RUN case "${TARGETPLATFORM}" in \
     "linux/amd64") GOARCH=amd64 ;; \
     "linux/arm64") GOARCH=arm64 ;; \
-    "linux/arm/v8") GOARCH=arm64 ;; \
+    "linux/arm/v7") GOARCH=arm GOARM=7 ;; \
     *) GOARCH=amd64 ;; \
 esac && \
 CGO_ENABLED=0 GOOS=linux go build -ldflags="-X main.Version=${VERSION}" -o /garden_sensor_hub ./src
