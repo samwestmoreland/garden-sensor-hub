@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -39,13 +38,7 @@ func main() {
 
 	server := NewServer()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello from Raspberry Pi!")
-	})
-
-	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello from Raspberry Pi!")
-	})
+	http.HandleFunc("/", http.FileServer(http.Dir("./build")).ServeHTTP)
 
 	http.HandleFunc("/api/soil-moisture-reading", server.handleSoilMoistureReading)
 
