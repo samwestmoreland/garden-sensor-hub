@@ -1,0 +1,15 @@
+FROM gcr.io/distroless/base-debian11
+
+WORKDIR /
+
+# Copy pre-built frontend files
+COPY frontend/build /build
+
+# Copy pre-built ARM64 Go binary
+COPY garden_sensor_hub /garden_sensor_hub
+
+EXPOSE 8080
+
+USER nonroot:nonroot
+
+ENTRYPOINT ["/garden_sensor_hub"]
